@@ -240,7 +240,9 @@ def _load_config(module, config):
         module.fail_json(msg='unable to set mmi-mode enable', output=err)
     rc, out, err = exec_command(module, 'system-view immediately')
     if rc != 0:
-        module.fail_json(msg='unable to enter system-view', output=err)
+        rc1, out1, err1 = exec_command(module, 'system-view')
+        if rc1 != 0:
+            module.fail_json(msg='unable to enter system-view', output=err)
     current_view_prompt = system_view_prompt = connection.get_prompt()
 
     for index, cmd in enumerate(config):
