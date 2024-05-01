@@ -177,7 +177,7 @@ class Cli:
             self._module.fail_json(msg='unable to set mmi-mode enable', output=err)
         rc, out, err = self.exec_command('system-view immediately')
         if rc != 0:
-            rc1, out1, err1 = self.exec_command('system-view immediately')
+            rc1, out1, err1 = self.exec_command('system-view')
             if rc1 != 0:
                 self._module.fail_json(msg='unable to enter system-view', output=err)
 
